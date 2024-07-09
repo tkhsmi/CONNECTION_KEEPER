@@ -6,43 +6,41 @@ on:
 
 jobs:
   rspec:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+    runs-on: ubuntu-latest # 実行環境として最新のUbuntuを選択します。
+    defaults:
+      run:
+        working-directory: . # 作業ディレクトリを指定します。
     services:
       mysql:
-        image: mysql:8.0
+        image: mysql:8.0.32 # 使用するMySQLのイメージを指定します。
         ports:
-          - 3306:3306
+          - 3306:3306 # ポート番号を指定します。
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
-
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes # 環境変数を設定します。ここではパスワードなしでMySQLにアクセスできるようにしています。
     steps:
-      - name: Checkout code
+      - name: Checkout code # GitHubのリポジトリからコードをチェックアウトします。
         uses: actions/checkout@v2
 
-      - name: Set up Ruby
+      - name: Set up Ruby # Rubyのセットアップを行います。
         uses: ruby/setup-ruby@v1
         with:
-          bundler-cache: true
+          ruby-version: 3.2.2 # 使用するRubyのバージョンを指定します。
+          bundler-cache: true # Bundlerのキャッシュを有効にします。
 
-      - name: Cache node modules
-        uses: actions/cache@v2
+      - name: Cache node modules # Nodeモジュールをキャッシュします。
+        uses: actions/cache@v3
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          path: node_modules # キャッシュするディレクトリを指定します。
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }} # キャッシュのキーを指定します。
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-node-  # 部分一致する最新のキャッシュを探します。
 
-      - name: Bundler and gem install
+      - name: Bundler and gem install # Bundlerとgemのインストールを行います。
         run: |
           gem install bundler
-          bundle install --jobs 4 --retry 3 --path vendor/bundle
+          bundle install
 
-      - name: Yarn install
-        run: yarn install --check-files
-
-      - name: Database create and migrate
+      - name: Database create and migrate # データベースの作成とマイグレーションを実行します。
         run: |
           cp config/database.yml.ci config/database.yml
           bundle exec rails db:create RAILS_ENV=test
@@ -53,15 +51,22 @@ jobs:
 
   rubocop:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: .
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+
+      - name: Bundler and gem install
+        run:
+          gem install bundler
+          bundle install
 
       - name: Run rubocop
         run: bundle exec rubocop
