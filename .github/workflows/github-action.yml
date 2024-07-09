@@ -24,7 +24,7 @@ jobs:
       - name: Set up Ruby # Rubyのセットアップを行います。
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2 # 使用するRubyのバージョンを指定します。
+          ruby-version: 3.1.2 # 使用するRubyのバージョンを指定します。
           bundler-cache: true # Bundlerのキャッシュを有効にします。
 
       - name: Cache node modules # Nodeモジュールをキャッシュします。
