@@ -49,8 +49,8 @@ gem 'bootsnap', require: false
 gem 'devise'
 
 group :development, :test do
-  gem 'pry-rails'
   gem 'factory_bot_rails'
+  gem 'pry-rails'
   gem 'rspec-rails'
 end
 
