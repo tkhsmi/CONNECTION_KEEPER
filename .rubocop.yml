@@ -70,6 +70,9 @@ AllCops:
     - '**/Vagabondfile'
     - '**/Vagrantfile'
   Exclude:
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
     - 'node_modules/**/*'
     - 'tmp/**/*'
     - 'vendor/**/*'
@@ -1070,7 +1073,7 @@ Layout/LineEndStringConcatenationIndentation:
   IndentationWidth: ~
 
 Layout/LineLength:
-  Description: 'Checks that line length does not exceed the configured limit.'
+  Description: '1行当たりの最大文字数'
   StyleGuide: '#max-line-length'
   Enabled: true
   VersionAdded: '0.25'
@@ -3028,6 +3031,12 @@ Naming/VariableNumber:
     - x86_64       # Allowed by default as an underscore separated CPU architecture name
   AllowedPatterns: []
 
+#################### RSpec ##############################
+
+RSpec/NoExpectationExample:
+  Description: 'RSpecの説明必須'
+  Enabled: false
+
 #################### Security ##############################
 
 Security/CompoundHash:
@@ -3187,7 +3196,7 @@ Style/ArrayJoin:
   VersionChanged: '0.31'
 
 Style/AsciiComments:
-  Description: 'Use only ascii symbols in comments.'
+  Description: 'falseで日本語のコメントを許可'
   StyleGuide: '#english-comments'
   Enabled: false
   VersionAdded: '0.9'
@@ -3390,7 +3399,7 @@ Style/CharacterLiteral:
   VersionAdded: '0.9'
 
 Style/ClassAndModuleChildren:
-  Description: 'Checks style of children classes and modules.'
+  Description: 'コントローラ等のモジュールをネストしての宣言'
   StyleGuide: '#namespace-definition'
   # Moving from compact to nested children requires knowledge of whether the
   # outer parent is a module or a class. Moving from nested to compact requires
@@ -3398,7 +3407,7 @@ Style/ClassAndModuleChildren:
   # have the knowledge to perform either operation safely and thus requires
   # manual oversight.
   SafeAutoCorrect: false
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.19'
   #
   # Basically there are two different styles:
@@ -3684,13 +3693,8 @@ Style/DocumentDynamicEvalDefinition:
   VersionChanged: '1.3'
 
 Style/Documentation:
-  Description: 'Document classes and non-namespace modules.'
-  Enabled: true
-  VersionAdded: '0.9'
-  AllowedConstants: []
-  Exclude:
-    - 'spec/**/*'
-    - 'test/**/*'
+  Description: 'クラスにコメントを必ず残す'
+  Enabled: false
 
 Style/DocumentationMethod:
   Description: 'Checks for missing documentation comment for public methods.'
@@ -3951,10 +3955,8 @@ Style/FormatStringToken:
   AllowedPatterns: []
 
 Style/FrozenStringLiteralComment:
-  Description: >-
-                 Add the frozen_string_literal comment to the top of files
-                 to help transition to frozen string literals by default.
-  Enabled: true
+  Description: '文字列のfreeze（Ruby3からは自動でfreezeされるので要らない）'
+  Enabled: false
   VersionAdded: '0.36'
   VersionChanged: '0.79'
   EnforcedStyle: always
@@ -5682,7 +5684,7 @@ Style/WhileUntilModifier:
   VersionChanged: '0.30'
 
 Style/WordArray:
-  Description: 'Use %w or %W for arrays of words.'
+  Description: '文字列による配列の%記法のチェック'
   StyleGuide: '#percent-w'
   Enabled: true
   VersionAdded: '0.9'
