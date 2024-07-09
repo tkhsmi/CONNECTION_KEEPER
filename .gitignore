@@ -39,3 +39,6 @@
 
 # schema
 /db/schema.rb
+
+# simplecove
+/coverage/
