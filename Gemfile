@@ -58,6 +58,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'brakeman', require: false
+  gem 'bullet'
   gem 'pre-commit', require: false
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
