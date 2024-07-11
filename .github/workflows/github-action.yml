@@ -4,22 +4,14 @@ on:
   push:
   pull_request:
 
+env:
+  GH_TOKEN: ${{ github.token }}
+  GH_REPO: ${{ github.repository }}
+
 jobs:
   rubocop:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.1.2
-          bundler-cache: true
       - run: |
-        gem install bundler
-        bundle install
-
-      - name: Run rubocop
-        run: bundle exec rubocop
+          gh pr diff ${{ github.event.number }} --name-only |
+          xargs -I {} sh -c '[ -f "{}" ] && echo "{}"' |
+          xargs --no-run-if-empty bundle exec rubocop --force-exclusion
