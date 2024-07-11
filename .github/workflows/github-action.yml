@@ -65,6 +65,7 @@ jobs:
 
       - name: Bundler and gem install
         run:
+          gem update --system
           gem install bundler
           bundle install
 
