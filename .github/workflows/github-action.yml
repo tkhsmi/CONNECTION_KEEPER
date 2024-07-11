@@ -11,6 +11,8 @@ env:
 jobs:
   rubocop:
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - run: |
           gh pr diff ${{ github.event.number }} --name-only |
           xargs -I {} sh -c '[ -f "{}" ] && echo "{}"' |
