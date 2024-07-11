@@ -4,10 +4,6 @@ on:
   push:
   pull_request:
 
-env:
-  GH_TOKEN: ${{ github.token }}
-  GH_REPO: ${{ github.repository }}
-
 jobs:
   rubocop:
     steps:
@@ -18,7 +14,4 @@ jobs:
         with:
           ruby-version: 3.1.2
           bundler-cache: true
-      - run: |
-          gh pr diff ${{ github.event.number }} --name-only |
-          xargs -I {} sh -c '[ -f "{}" ] && echo "{}"' |
-          xargs --no-run-if-empty bundle exec rubocop --force-exclusion
+      - run: bundle exec rubocop
