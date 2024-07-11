@@ -12,14 +12,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: setup bundle
+        run: |
+          bundle config set path 'vendor/bundle'
+          bundle update
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1.2
           bundler-cache: true
-
-      - name: setup bundle
-        run: bundle install
 
       - name: Run rubocop
         run: bundle exec rubocop
