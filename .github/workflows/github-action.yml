@@ -1,19 +1,21 @@
 name: Run rspec, rubocop
+
 on:
   push:
   pull_request:
 
 jobs:
   rubocop:
-    name: runner / rubocop
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-      - name: Setup Ruby Env
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1.2
-        bundler-cache: true
-      - name: rubocop
+          bundler-cache: true
+
+      - name: Run rubocop
         run: bundle exec rubocop
