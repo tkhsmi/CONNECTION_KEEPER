@@ -11,5 +11,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Bundler and gem install
+        run: |
+          gem install bundler
+          bundle install
+
       - name: Run rubocop
-        run: rubocop
+        run: bundle exec rubocop
