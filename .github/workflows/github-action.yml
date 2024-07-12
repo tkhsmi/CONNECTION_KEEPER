@@ -17,4 +17,6 @@ jobs:
           ruby-version: .ruby-version
 
       - name: Run rubocop
-        run: bundle exec rubocop
+        run: |
+          gem install rubocop
+          bundle exec rubocop
