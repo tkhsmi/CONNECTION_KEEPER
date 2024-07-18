@@ -1,0 +1,49 @@
+body {
+  background-color: #F2F2F2;
+}
+
+.sign-up-container {
+  display: flex;
+  justify-content: center;
+}
+
+.sign-up-card {
+  background-color: white;
+  margin-top: 70px;
+  min-width: 370px;
+  padding: 30px 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sign-up-form {
+  width: 300px;
+}
+
+.form-title {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.form-label::after {
+  content: '*';
+  color: red;
+}
+
+.sign-up-btn {
+  height: 50px;
+  width: 100%;
+  font-size: 1.6rem;
+}
+
+.login-link {
+  color: red;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 18px;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
