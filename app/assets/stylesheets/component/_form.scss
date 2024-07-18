@@ -1,0 +1,26 @@
+.field {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form-text {
+  border: 1px solid #c6c6c6;
+  color: #888;
+  border-radius: 2px;
+  padding: 18px 22px 15px;
+  width: -webkit-fill-available;
+
+  &:focus-visible {
+    outline: none;
+    border: solid 1.5px #E74646;
+  }
+}
+
+.form-label {
+  color: #4f4f4f;
+  position: absolute;
+  background-color: white;
+  left: 10px;
+  top: -14px;
+  padding: 4px 10px;
+}
