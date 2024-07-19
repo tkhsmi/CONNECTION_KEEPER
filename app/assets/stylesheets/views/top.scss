@@ -1,3 +1,7 @@
+.logo {
+  height: 45px;
+}
+
 .content {
   height: 150vh;
   background-color: #F2F2F2;
@@ -12,6 +16,11 @@
   &:hover {
     opacity: 0.5;
   }
+}
+
+.link {
+  min-width: 200px;
+  margin-left: 20px;
 }
 
 .login-link {
