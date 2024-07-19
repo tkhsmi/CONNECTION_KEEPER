@@ -1,0 +1,30 @@
+.content {
+  height: 150vh;
+  background-color: #F2F2F2;
+}
+
+.sign-up-link {
+  color: #E74646;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 18px;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.login-link {
+  color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 18px;
+    margin-left: 20px;
+    border-radius: 22px;
+    padding: 15px 20px;
+    background-color: #E74646;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
