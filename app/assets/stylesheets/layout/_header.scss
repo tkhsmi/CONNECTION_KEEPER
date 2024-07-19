@@ -1,0 +1,19 @@
+.main {
+  height: auto;
+}
+
+.top-header {
+  height: 60px;
+  border-bottom: 1px solid #E2E0E0;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+.top-header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: inherit;
+}
