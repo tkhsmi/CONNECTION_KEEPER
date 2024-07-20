@@ -1,19 +1,33 @@
-.main {
-  height: auto;
+header {
+  position: sticky;
+  top: 0;
 }
 
-.top-header {
+.header-logo {
+  height: 45px;
+}
+
+.header {
   height: 60px;
   border-bottom: 1px solid #E2E0E0;
   padding: 10px 20px;
-  position: sticky;
-  top: 0;
   background-color: white;
 }
 
-.top-header-wrapper {
+.header-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: inherit;
+}
+
+.logout-link {
+  color: black;
+  opacity: 0.7;
+  text-decoration: none;
+  display: inline-block;
+
+  &:hover {
+    opacity: 1;
+  }
 }
