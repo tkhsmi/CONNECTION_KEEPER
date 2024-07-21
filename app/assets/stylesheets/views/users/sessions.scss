@@ -1,5 +1,7 @@
+@use '../../setting';
+
 body {
-  background-color: #F2F2F2;
+  background-color: setting.$base-color;
 }
 
 .login-container {
@@ -45,7 +47,7 @@ body {
 }
 
 .sign-up-link {
-  color: red;
+  color: setting.$accent-color;
   text-decoration: none;
   font-weight: bold;
   margin-top: 18px;
