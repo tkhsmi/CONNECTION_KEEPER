@@ -1,10 +1,12 @@
+@use '../setting';
+
 .content {
   height: 150vh;
-  background-color: #F2F2F2;
+  background-color: setting.$base-color;
 }
 
 .sign-up-link {
-  color: #E74646;
+  color: setting.$accent-color;
   text-decoration: none;
   font-weight: bold;
   margin-top: 18px;
@@ -27,7 +29,7 @@
     margin-left: 20px;
     border-radius: 22px;
     padding: 15px 20px;
-    background-color: #E74646;
+    background-color: setting.$accent-color;
 
   &:hover {
     opacity: 0.5;
