@@ -1,3 +1,5 @@
 class Admins::DashboardController < ApplicationController
-  def index; end
+  def index
+    @users = User.all
+  end
 end
