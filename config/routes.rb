@@ -20,4 +20,8 @@ Rails.application.routes.draw do
   unauthenticated do
     root 'top#index', as: :unauthenticated_root
   end
+
+  namespace :admins do
+    get 'dashboard/index', as: :dashboard
+  end
 end
