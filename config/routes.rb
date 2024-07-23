@@ -24,4 +24,8 @@ Rails.application.routes.draw do
   namespace :admins do
     get 'dashboard/index', as: :dashboard
   end
+
+  namespace :users do
+    resources :tags, except: [:show]
+  end
 end

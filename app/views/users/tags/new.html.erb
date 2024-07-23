@@ -1,0 +1,8 @@
+<h1>タグ作成画面</h1>
+<%= form_with model: @tag, url: users_tags_path(@tag), local: true do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <%= f.submit "登録する" %>
+<% end %>
