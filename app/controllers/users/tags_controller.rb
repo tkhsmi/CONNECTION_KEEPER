@@ -12,6 +12,7 @@ class Users::TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
     @tag.user_id = current_user.id
+
     if @tag.save
       redirect_to users_tags_path
     else
