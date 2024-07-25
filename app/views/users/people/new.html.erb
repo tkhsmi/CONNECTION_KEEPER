@@ -1,0 +1,12 @@
+<h1>ヒト作成画面</h1>
+<%= form_with model: @person, url: users_people_path(@person), local: true do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :birthday %>
+    <%= f.date_field :birthday %>
+  </div>
+  <%= f.submit "登録する" %>
+<% end %>

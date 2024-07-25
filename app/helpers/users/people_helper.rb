@@ -1,0 +1,2 @@
+module Users::PeopleHelper
+end
