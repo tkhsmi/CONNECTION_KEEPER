@@ -4,6 +4,7 @@ Rails.application.config.dartsass.builds = {
   'views/admins/dashboard.scss' => 'views/admins/dashboard.css',
   'views/admins/sessions.scss' => 'views/admins/sessions.css',
   'views/users/dashboard.scss'  => 'views/users/dashboard.css',
+  'views/users/memos.scss'  => 'views/users/memos.css',
   'views/users/people.scss'  => 'views/users/people.css',
   'views/users/registrations.scss'  => 'views/users/registrations.css',
   'views/users/sessions.scss'  => 'views/users/sessions.css',
