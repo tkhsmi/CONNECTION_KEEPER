@@ -19,6 +19,9 @@ jobs:
       - name: install rubocop
         run: gem install rubocop
 
+      - name: bundle update net-pop
+        run: bundle update net-pop
+
       - name: bundle install
         run: bundle install
 
