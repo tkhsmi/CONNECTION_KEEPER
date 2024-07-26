@@ -404,6 +404,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   mysql2 (~> 0.5)
+  net-pop (~> 0.1.2)
   pre-commit
   pry-rails
   puma (>= 5.0)
