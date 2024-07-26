@@ -16,7 +16,8 @@ jobs:
         with:
           ruby-version: .ruby-version
 
+      - name: install rubocop
+        run: gem install rubocop
+
       - name: Run rubocop
-        run: |
-          gem install rubocop
-          rubocop
+        run: rubocop
