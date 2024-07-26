@@ -16,12 +16,6 @@ jobs:
         with:
           ruby-version: .ruby-version
 
-      - name: install rubocop
-        run: gem install rubocop
-
-      - name: bundle update --conservative net-pop
-        run: bundle update net-pop
-
       - name: bundle install
         run: bundle install
 
