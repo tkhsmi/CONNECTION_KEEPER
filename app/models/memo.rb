@@ -2,6 +2,8 @@ class Memo < ApplicationRecord
   belongs_to :user
   has_many :memo_tags, dependent: :destroy
   has_many :tags, through: :memo_tags
+
+  validates :content, presence: true
 end
 
 # == Schema Information
