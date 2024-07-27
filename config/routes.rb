@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   end
 
   namespace :users do
+    resources :groups, except: [:show]
     resources :memos
     resources :people
     resources :tags, except: [:show]
