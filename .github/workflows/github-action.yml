@@ -38,6 +38,8 @@ jobs:
       - name: Bundler and gem install
         run: |
           gem install bundler
+          gem uninstall net-pop
+          bundle up net-pop
           bundle install --jobs 4 --retry 3 --path vendor/bundle
 
       - name: Yarn install
