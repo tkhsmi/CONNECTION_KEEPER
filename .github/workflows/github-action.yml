@@ -34,6 +34,8 @@ jobs:
       - name: Install dependencies
         run: |
           gem install bundler
+          gem uninstall net-pop
+          bundle up net-pop
           bundle install --jobs 4 --retry 3
 
       - name: Set up the database
