@@ -1,13 +1,12 @@
-name: Run rspec, rubocop
+name: Run RSpec, Rubocop
 
 on:
   push:
   pull_request:
 
 jobs:
-  rspec:
+  test:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
     services:
       mysql:
         image: mysql:8.0
@@ -16,55 +15,38 @@ jobs:
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_ROOT_PASSWORD: ""
-        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
+          MYSQL_DATABASE: test_database
+        options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-      - name: Checkout code
+      - name: Check out repository
         uses: actions/checkout@v2
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          bundler-cache: true
+          ruby-version: 3.1.2
 
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Bundler and gem install
+      - name: Install dependencies
         run: |
           gem install bundler
           gem uninstall net-pop
           bundle up net-pop
-          bundle install --jobs 4 --retry 3 --path vendor/bundle
+          bundle install --jobs 4 --retry 3
 
-      - name: Yarn install
-        run: yarn install --check-files
-
-      - name: Database create and migrate
+      - name: Set up the database
         run: |
           cp config/database.yml.ci config/database.yml
-          bundle exec rails db:create RAILS_ENV=test
-          bundle exec rails db:migrate RAILS_ENV=test
+          bundle exec rails db:create
+          bundle exec rails db:schema:load
+        env:
+          RAILS_ENV: test
+          DATABASE_HOST: 127.0.0.1
+          DATABASE_USER: root
+          DATABASE_PASSWORD: password
 
-      - name: Run rspec
-        run: bundle exec rspec
-
-  rubocop:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-
-      - name: Run rubocop
+      - name: Run Rubocop
         run: bundle exec rubocop
+
+      - name: Run RSpec
+        run: bundle exec rspec
