@@ -38,7 +38,7 @@ jobs:
         run: |
           cp config/database.yml.ci config/database.yml
           bundle exec rails db:create
-          bundle exec rails db:schema:load
+          bundle exec rails db:migrate
         env:
           RAILS_ENV: test
           DATABASE_HOST: 127.0.0.1
