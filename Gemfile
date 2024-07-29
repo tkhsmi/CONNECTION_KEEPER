@@ -68,6 +68,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'brakeman', require: false
   gem 'bullet'
+  gem 'letter_opener_web'
   gem 'pre-commit', require: false
 
   # Use console on exceptions pages [https://github.com/rails/web-console]
