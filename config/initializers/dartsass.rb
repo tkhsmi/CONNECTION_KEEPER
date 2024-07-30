@@ -1,5 +1,6 @@
 Rails.application.config.dartsass.builds = {
   'application.scss' => 'application.css',
+  'mailer/common.scss' => 'mailer/common.css',
   'views/top.scss' => 'views/top.css',
   'views/admins/dashboard.scss' => 'views/admins/dashboard.css',
   'views/admins/sessions.scss' => 'views/admins/sessions.css',

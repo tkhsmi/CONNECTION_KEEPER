@@ -50,6 +50,7 @@ gem 'dartsass-rails'
 gem 'devise'
 gem 'devise-i18n-views'
 gem 'net-pop'
+gem 'premailer-rails'
 gem 'rails-i18n'
 
 group :development, :test do
