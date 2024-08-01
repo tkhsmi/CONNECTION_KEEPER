@@ -1,25 +1,23 @@
-<h2>Change your password</h2>
+<div class="forgot-password-container">
+  <div class="forgot-password-card">
+    <%= link_to image_tag("square_logo.png", class:"logo"), '/' %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'forgot-password-form' }) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
+      <div class="field">
+        <%= f.label :password, class: 'form-label' %>
+        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'form-text' %>
+      </div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+      <div class="field">
+        <%= f.label :password_confirmation, class: 'form-label' %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-text' %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+      <div class="actions">
+        <%= f.submit "パスワードを変更する", class: 'primary-btn forgot-password-btn' %>
+      </div>
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+    <%= link_to "元のパスワードでログインする", new_session_path(resource_name), class: 'login-link' %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>
