@@ -7,8 +7,8 @@
     <% end %> -->
   </div>
 </div>
-<div class="dashboard-container">
-  <div class="dashboard-content main">
+<div class="container">
+  <div class="content main">
     <div>
       <% @people.each do |person| %>
         <div class="person-row">
@@ -39,7 +39,7 @@
       <% end %>
     </div>
   </div>
-  <div class="dashboard-content">
+  <div class="content">
     <div class="person-detail">
       <div class="person-detail-top">
         <%= image_tag 'person_no_img.png', class: 'person-img' %>
@@ -89,7 +89,7 @@
       </div>
     </div>
   </div>
-  <div class="dashboard-content">
+  <div class="content">
     <% @memos.each do |memo| %>
       <div class="memo-row">
         <div class="memo-date">
