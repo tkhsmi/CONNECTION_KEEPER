@@ -10,24 +10,13 @@
 <div class="container">
   <div class="content main">
     <div>
-      <% @people.each do |person| %>
-        <div class="person-row">
+      <% @people.each_with_index do |person, i| %>
+        <div class="person-row <%= 'active' if active?(i, person.id) %>" data-id=<%= person.id %>>
           <%= image_tag 'person_no_img.png', class: 'person-img' %>
           <div class="person-summary">
             <div class="person-furigana">
               たなかゆきてる
             </div>
-            <div class="person-name">
-              <%= person.name %>
-            </div>
-            <div class="person-group">
-              家族
-            </div>
-          </div>
-        </div>
-        <div class="person-row">
-          <%= image_tag 'person_no_img.png', class: 'person-img' %>
-          <div class="person-summary">
             <div class="person-name">
               <%= person.name %>
             </div>
@@ -44,48 +33,26 @@
       <div class="person-detail-top">
         <%= image_tag 'person_no_img.png', class: 'person-img' %>
         <div class="person-summary">
-          <div class="person-furigana">
-            たなかゆきてる
-          </div>
-          <div class="person-name">
-            田中幸輝
-          </div>
-          <div class="person-group">
-            家族
-          </div>
+          <div class="person-furigana">たなかゆきてる</div>
+          <div class="person-name"><%= @person.name %></div>
+          <div class="person-group">家族</div>
         </div>
       </div>
       <div class="person-detail-row">
-        <span class="person-detail-title">
-          誕生日
-        </span>
-        <span>
-          1994/07/19(30歳)
-        </span>
+        <span class="person-detail-title">誕生日</span>
+        <span class="person-birthday"><%= l @person.birthday %>(<%= get_age(@person.birthday) %>歳)</span>
       </div>
       <div class="person-detail-row">
-        <span class="person-detail-title">
-          電話番号
-        </span>
-        <span>
-          090-0000-0000
-        </span>
+        <span class="person-detail-title">電話番号</span>
+        <span class="person-phone-number">090-0000-0000</span>
       </div>
       <div class="person-detail-row">
-        <span class="person-detail-title">
-          メールアドレス
-        </span>
-        <span>
-          sample@sample.com
-        </span>
+        <span class="person-detail-title">メールアドレス</span>
+        <span class="person-mail">sample@sample.com</span>
       </div>
       <div class="person-detail-row">
-        <span class="person-detail-title">
-          住所
-        </span>
-        <span>
-          東京都江戸川区東小岩1-14-3
-        </span>
+        <span class="person-detail-title">住所</span>
+        <span class="person-address">東京都江戸川区東小岩1-14-3</span>
       </div>
     </div>
   </div>

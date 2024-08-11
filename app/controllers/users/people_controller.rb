@@ -2,8 +2,10 @@ class Users::PeopleController < ApplicationController
   before_action :set_person, only: %i[show edit update]
 
   def index
-    @memos = current_user.memo
     @people = current_user.person
+    @person = current_user.person.find_by(id: params[:id]) || current_user.person.first
+
+    @memos = current_user.memo # TODO: @personに紐づくメモを表示する
   end
 
   def show

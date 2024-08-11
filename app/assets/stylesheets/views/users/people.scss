@@ -1,3 +1,5 @@
+@use '../../setting';
+
 .sub-header {
   height: 40px;
   background-color: #f3f3f3;
@@ -57,7 +59,7 @@
 
       .person-group {
         border-radius: 14px;
-        background-color: #e74646;
+        background-color: setting.$accent-color;;
         font-size: 1.4rem;
         padding: 3px 16px;
         color: white;
@@ -100,6 +102,11 @@
     border-bottom: 1px solid #e2e0e0;
   }
 
+  &.active {
+    background-color: #e2e2e2;
+    border-right: 8px solid setting.$accent-color;;
+  }
+
   .person-img {
     border-radius: 30px;
     width: 60px;
@@ -120,7 +127,7 @@
 
     .person-group {
       border-radius: 14px;
-      background-color: #e74646;
+      background-color: setting.$accent-color;;
       font-size: 1.4rem;
       padding: 3px 16px;
       color: white;

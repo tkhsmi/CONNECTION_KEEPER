@@ -3557,7 +3557,6 @@ Style/CommentAnnotation:
   VersionAdded: '0.10'
   VersionChanged: '1.20'
   Keywords:
-    - TODO
     - FIXME
     - OPTIMIZE
     - HACK
