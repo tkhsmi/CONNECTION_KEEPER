@@ -15,7 +15,7 @@
 .content {
   height: calc(100vh - 123px);
   width: 35%;
-  min-width: 300px;
+  min-width: 350px;
 
   &.main {
     padding: 0;
@@ -27,7 +27,7 @@
   }
 
   &:last-child {
-    width: auto;
+    width: -webkit-fill-available;
   }
 }
 
