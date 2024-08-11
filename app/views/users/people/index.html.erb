@@ -106,3 +106,7 @@
     <% end %>
   </div>
 </div>
+
+<% content_for :js do %>
+  <%= javascript_import_module_tag "users/people/index" %>
+<% end %>
