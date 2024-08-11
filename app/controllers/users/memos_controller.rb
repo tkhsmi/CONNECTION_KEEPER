@@ -2,7 +2,7 @@ class Users::MemosController < ApplicationController
   before_action :set_memo, only: %i[show edit update]
 
   def index
-    @memos = Memo.all
+    @memos = current_user.memo
   end
 
   def show; end
