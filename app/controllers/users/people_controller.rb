@@ -2,10 +2,14 @@ class Users::PeopleController < ApplicationController
   before_action :set_person, only: %i[show edit update]
 
   def index
-    @people = Person.all
+    @memos = current_user.memo
+    @people = current_user.person
   end
 
-  def show; end
+  def show
+    @person = Person.find(params[:id])
+    render json: @person
+  end
 
   def new
     @person = Person.new
