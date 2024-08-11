@@ -1,3 +1,5 @@
+@use '../setting';
+
 header {
   position: sticky;
   top: 0;
@@ -21,13 +23,26 @@ header {
   height: inherit;
 }
 
-.logout-link {
-  color: black;
-  opacity: 0.7;
-  text-decoration: none;
-  display: inline-block;
+.login-header {
+  .header-item {
+    color: #333;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 20px;
+    opacity: 0.7;
 
-  &:hover {
-    opacity: 1;
+    &:hover {
+      opacity: 1;
+    }
+
+    &.active {
+      color: setting.$accent-color;
+      font-weight: bold;
+      opacity: 1;
+    }
+
+    &.logout-link {
+      margin-left: 60px;
+    }
   }
 }
