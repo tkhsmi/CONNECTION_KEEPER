@@ -22,6 +22,9 @@ for (let i = 0; i < personRows.length; i++) {
 
         // TODO メモも更新する
 
+        document.querySelector('.edit-button').setAttribute('href', '/users/people/' + data.id + '/edit');
+        document.querySelector('.delete-button').setAttribute('href', '/users/people/' + data.id);
+
         updateOrAddIdParam(data.id)
         this.classList.add('active');
       })
