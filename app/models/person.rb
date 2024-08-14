@@ -8,12 +8,16 @@ end
 #
 # Table name: people
 #
-#  id         :bigint           not null, primary key
-#  birthday   :date
-#  name       :string(255)      not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint           not null
+#  id           :bigint           not null, primary key
+#  address      :string(255)
+#  birthday     :date
+#  furigana     :string(255)
+#  mail         :string(255)
+#  name         :string(255)      not null
+#  phone_number :string(255)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  user_id      :bigint           not null
 #
 # Indexes
 #
