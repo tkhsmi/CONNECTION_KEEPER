@@ -30,6 +30,8 @@ header {
     display: inline-block;
     margin-left: 20px;
     opacity: 0.7;
+    align-content: center;
+    height: 80px;
 
     &:hover {
       opacity: 1;
@@ -48,12 +50,14 @@ header {
         border-bottom: 2px solid red;
         width: 100%;
         left: 0;
-        bottom: -28px;
+        bottom: 0px;
       }
     }
 
     &.logout-link {
-      margin-left: 60px;
+      border-left: 1px solid #f3f3f3;
+      margin-left: 20px;
+      padding-left: 20px;
     }
   }
 }
