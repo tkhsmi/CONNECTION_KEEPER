@@ -36,6 +36,42 @@
 .person-detail {
   padding: 20px;
 
+  .button-area {
+    margin-bottom: 20px;
+
+    .button {
+      display: inline-block;
+      height: 40px;
+      text-decoration: none;
+      min-width: 50px;
+      text-align: center;
+      align-content: center;
+      font-weight: bold;
+      border-radius: 10px;
+      width: 48%;
+
+      &.edit-button {
+        border: 1px solid #e74646;
+        color: #e74646;
+
+        &:hover {
+          background-color: #e74646;
+          color: white;
+        }
+      }
+
+      &.delete-button {
+        border: 1px solid #8c8c8c;
+        color: #8c8c8c;
+
+        &:hover {
+          background-color: #8c8c8c;
+          color: white;
+        }
+      }
+    }
+  }
+
   .person-detail-top {
     display: flex;
     align-items: center;
@@ -59,7 +95,8 @@
 
       .person-group {
         border-radius: 14px;
-        background-color: setting.$accent-color;;
+        background-color: setting.$accent-color;
+        display: inline-block;
         font-size: 1.4rem;
         padding: 3px 16px;
         color: white;
@@ -127,7 +164,8 @@
 
     .person-group {
       border-radius: 14px;
-      background-color: setting.$accent-color;;
+      background-color: setting.$accent-color;
+      display: inline-block;
       font-size: 1.4rem;
       padding: 3px 16px;
       color: white;

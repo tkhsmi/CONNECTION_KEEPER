@@ -20,9 +20,8 @@
             <div class="person-name">
               <%= person.name %>
             </div>
-            <div class="person-group">
-              家族
-            </div>
+            <div class="person-group">家族</div>
+            <div class="person-group">田中家</div>
           </div>
         </div>
       <% end %>
@@ -36,7 +35,12 @@
           <div class="person-furigana">たなかゆきてる</div>
           <div class="person-name"><%= @person.name %></div>
           <div class="person-group">家族</div>
+          <div class="person-group">田中家</div>
         </div>
+      </div>
+      <div class="button-area">
+        <%= link_to '編集する', edit_users_person_path(@person.id), class: 'edit-button button' %>
+        <%= link_to '削除する', users_person_path(@person.id), data: { turbo_method: :delete }, class: 'delete-button button' %>
       </div>
       <div class="person-detail-row">
         <span class="person-detail-title">誕生日</span>
