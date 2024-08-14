@@ -11,7 +11,7 @@ end
 #  id           :bigint           not null, primary key
 #  address      :string(255)
 #  birthday     :date
-#  furigana     :string(255)
+#  furigana     :string(255)      not null
 #  mail         :string(255)
 #  name         :string(255)      not null
 #  phone_number :string(255)
