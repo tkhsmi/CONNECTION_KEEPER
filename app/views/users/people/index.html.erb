@@ -14,12 +14,8 @@
         <div class="person-row <%= 'active' if active?(i, person.id) %>" data-id=<%= person.id %>>
           <%= image_tag 'person_no_img.png', class: 'person-img' %>
           <div class="person-summary">
-            <div class="person-furigana">
-              たなかゆきてる
-            </div>
-            <div class="person-name">
-              <%= person.name %>
-            </div>
+            <div class="person-furigana"><%= person.furigana %></div>
+            <div class="person-name"><%= person.name %></div>
             <div class="person-group">家族</div>
             <div class="person-group">田中家</div>
           </div>
@@ -42,21 +38,21 @@
         <%= link_to '編集する', edit_users_person_path(@person.id), class: 'edit-button button' %>
         <%= link_to '削除する', users_person_path(@person.id), data: { turbo_method: :delete }, class: 'delete-button button' %>
       </div>
-      <div class="person-detail-row">
+      <div class="person-detail-row <%= 'd-none' if @person.birthday.blank? %>">
         <span class="person-detail-title">誕生日</span>
         <span class="person-birthday"><%= l @person.birthday %>(<%= get_age(@person.birthday) %>歳)</span>
       </div>
-      <div class="person-detail-row">
+      <div class="person-detail-row <%= 'd-none' if @person.phone_number.blank? %>">
         <span class="person-detail-title">電話番号</span>
-        <span class="person-phone-number">090-0000-0000</span>
+        <span class="person-phone-number"><%= @person.phone_number %></span>
       </div>
-      <div class="person-detail-row">
+      <div class="person-detail-row <%= 'd-none' if @person.mail.blank? %>">
         <span class="person-detail-title">メールアドレス</span>
-        <span class="person-mail">sample@sample.com</span>
+        <span class="person-mail"><%= @person.mail %></span>
       </div>
-      <div class="person-detail-row">
+      <div class="person-detail-row <%= 'd-none' if @person.address.blank? %>">
         <span class="person-detail-title">住所</span>
-        <span class="person-address">東京都江戸川区東小岩1-14-3</span>
+        <span class="person-address"><%= @person.address %></span>
       </div>
     </div>
   </div>

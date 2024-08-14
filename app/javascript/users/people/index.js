@@ -17,13 +17,45 @@ for (let i = 0; i < personRows.length; i++) {
       })
       .then(data => {
         const formattedBirthday = data.birthday.replace(/-/g, '/');
+        document.querySelector('.person-detail .person-furigana').textContent = data.furigana;
         document.querySelector('.person-detail .person-name').textContent = data.name;
-        document.querySelector('.person-detail .person-birthday').textContent = formattedBirthday + '(' + getAge(new Date(data.birthday)) + '歳)';
-
-        // TODO メモも更新する
 
         document.querySelector('.edit-button').setAttribute('href', '/users/people/' + data.id + '/edit');
         document.querySelector('.delete-button').setAttribute('href', '/users/people/' + data.id);
+
+        const birthday = document.querySelector('.person-detail .person-birthday')
+        if(data.birthday) {
+          birthday.textContent = formattedBirthday + '(' + getAge(new Date(data.birthday)) + '歳)';
+          birthday.closest('.person-detail-row').classList.remove("d-none");
+        } else {
+          birthday.closest('.person-detail-row').classList.add("d-none");
+        }
+
+        const phoneNumber = document.querySelector('.person-detail .person-phone-number')
+        if(data.phone_number) {
+          phoneNumber.textContent = data.phone_number;
+          phoneNumber.closest('.person-detail-row').classList.remove("d-none");
+        } else {
+          phoneNumber.closest('.person-detail-row').classList.add("d-none");
+        }
+
+        const mail = document.querySelector('.person-detail .person-mail')
+        if(data.mail) {
+          mail.textContent = data.mail;
+          mail.closest('.person-detail-row').classList.remove("d-none");
+        } else {
+          mail.closest('.person-detail-row').classList.add("d-none");
+        }
+
+        const address = document.querySelector('.person-detail .person-address')
+        if(data.address) {
+          address.textContent = data.address;
+          address.closest('.person-detail-row').classList.remove("d-none");
+        } else {
+          address.closest('.person-detail-row').classList.add("d-none");
+        }
+
+        // TODO メモも更新する
 
         updateOrAddIdParam(data.id)
         this.classList.add('active');
