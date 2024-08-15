@@ -13,19 +13,16 @@ class Users::PeopleController < ApplicationController
     render json: @person
   end
 
-  def new
-    @person = Person.new
-  end
-
   def create
     @person = Person.new(person_params)
     @person.user_id = current_user.id
 
     if @person.save
-      redirect_to users_people_path
+      # redirect_to users_people_path
     else
-      render :new
+      @person # TODO フォームにエラーを表示するようにする
     end
+    redirect_to users_people_path
   end
 
   def edit; end
@@ -41,6 +38,6 @@ class Users::PeopleController < ApplicationController
   end
 
   def person_params
-    params.require(:person).permit(:name, :birthday)
+    params.require(:person).permit(:furigana, :name, :birthday, :phone_number, :mail, :address)
   end
 end

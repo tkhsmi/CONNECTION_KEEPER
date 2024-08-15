@@ -5,6 +5,7 @@
       <%= text_field_tag :search %>
       <%= submit_tag '検索する' %>
     <% end %> -->
+    <%= button_tag "ヒトを追加", id: 'openModalBtn', class: 'primary-btn add-person-btn' %>
   </div>
 </div>
 <div class="container">
@@ -28,7 +29,7 @@
       <div class="person-detail-top">
         <%= image_tag 'person_no_img.png', class: 'person-img' %>
         <div class="person-summary">
-          <div class="person-furigana">たなかゆきてる</div>
+          <div class="person-furigana"><%= @person.furigana %></div>
           <div class="person-name"><%= @person.name %></div>
           <div class="person-group">家族</div>
           <div class="person-group">田中家</div>
@@ -69,6 +70,41 @@
         <div class="memo-tag">
           結婚祝い
         </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div id="newPersonModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModalBtn">&times;</span>
+    <%= form_with model: Person.new, url: users_people_path, local: true do |f| %>
+      <div class="field mt-50">
+        <%= f.label :furigana, class: 'form-label' %>
+        <%= f.text_field :furigana, class: 'form-text' %>
+      </div>
+      <div class="field">
+        <%= f.label :name, class: 'form-label' %>
+        <%= f.text_field :name, class: 'form-text' %>
+      </div>
+      <div class="field">
+        <%= f.label :birthday, class: 'form-label' %>
+        <%= f.date_field :birthday, class: 'form-text' %>
+      </div>
+      <div class="field">
+        <%= f.label :phone_number, class: 'form-label' %>
+        <%= f.telephone_field :phone_number, class: 'form-text' %>
+      </div>
+      <div class="field">
+        <%= f.label :mail, class: 'form-label' %>
+        <%= f.email_field :mail, autofocus: true, autocomplete: "email", class: 'form-text' %>
+      </div>
+      <div class="field">
+        <%= f.label :address, class: 'form-label' %>
+        <%= f.text_field :address, class: 'form-text' %>
+      </div>
+      <div>
+        <%= f.submit 'ヒトを追加', class: 'primary-btn submit-btn' %>
       </div>
     <% end %>
   </div>

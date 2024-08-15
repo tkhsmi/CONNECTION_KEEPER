@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   namespace :users do
     resources :groups, except: [:show]
     resources :memos
-    resources :people
+    resources :people, except: [:new]
     resources :tags, except: [:show]
   end
 end

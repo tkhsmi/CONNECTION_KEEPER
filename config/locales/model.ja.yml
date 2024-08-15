@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    # モデル名
+    models:
+      person: ヒト
+    # モデルごとの属性
+    attributes:
+      person:
+        furigana: ふりがな
+        name: 名前
+        birthday: 誕生日
+        phone_number: 電話番号
+        mail: メールアドレス
+        address: 住所

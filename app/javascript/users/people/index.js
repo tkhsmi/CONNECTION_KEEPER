@@ -1,70 +1,99 @@
-const personRows = document.getElementsByClassName('person-row');
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('newPersonModal');
+  const openModalBtn = document.getElementById('openModalBtn');
+  const closeModalBtn = document.getElementById('closeModalBtn');
 
-for (let i = 0; i < personRows.length; i++) {
-  personRows[i].addEventListener("click", function() {
-    for (let j = 0; j < personRows.length; j++) {
-      personRows[j].classList.remove('active');
-    }
-
-    const personId = this.getAttribute('data-id');
-
-    fetch(`/users/people//${personId}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        const formattedBirthday = data.birthday.replace(/-/g, '/');
-        document.querySelector('.person-detail .person-furigana').textContent = data.furigana;
-        document.querySelector('.person-detail .person-name').textContent = data.name;
-
-        document.querySelector('.edit-button').setAttribute('href', '/users/people/' + data.id + '/edit');
-        document.querySelector('.delete-button').setAttribute('href', '/users/people/' + data.id);
-
-        const birthday = document.querySelector('.person-detail .person-birthday')
-        if(data.birthday) {
-          birthday.textContent = formattedBirthday + '(' + getAge(new Date(data.birthday)) + '歳)';
-          birthday.closest('.person-detail-row').classList.remove("d-none");
-        } else {
-          birthday.closest('.person-detail-row').classList.add("d-none");
-        }
-
-        const phoneNumber = document.querySelector('.person-detail .person-phone-number')
-        if(data.phone_number) {
-          phoneNumber.textContent = data.phone_number;
-          phoneNumber.closest('.person-detail-row').classList.remove("d-none");
-        } else {
-          phoneNumber.closest('.person-detail-row').classList.add("d-none");
-        }
-
-        const mail = document.querySelector('.person-detail .person-mail')
-        if(data.mail) {
-          mail.textContent = data.mail;
-          mail.closest('.person-detail-row').classList.remove("d-none");
-        } else {
-          mail.closest('.person-detail-row').classList.add("d-none");
-        }
-
-        const address = document.querySelector('.person-detail .person-address')
-        if(data.address) {
-          address.textContent = data.address;
-          address.closest('.person-detail-row').classList.remove("d-none");
-        } else {
-          address.closest('.person-detail-row').classList.add("d-none");
-        }
-
-        // TODO メモも更新する
-
-        updateOrAddIdParam(data.id)
-        this.classList.add('active');
-      })
-      .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-      });
+  // モーダルを開く
+  openModalBtn.addEventListener('click', function() {
+    modal.style.display = 'block';
   });
-}
+
+  // モーダルを閉じる
+  closeModalBtn.addEventListener('click', function() {
+    modal.style.display = 'none';
+    document.getElementById('person_furigana').value = '';
+    document.getElementById('person_name').value = '';
+    document.getElementById('person_birthday').value = '';
+    document.getElementById('person_phone_number').value = '';
+    document.getElementById('person_mail').value = '';
+    document.getElementById('person_address').value = '';
+  });
+
+  // モーダルの外側をクリックしたときにモーダルを閉じる
+  window.addEventListener('click', function(event) {
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  const personRows = document.getElementsByClassName('person-row');
+
+  for (let i = 0; i < personRows.length; i++) {
+    personRows[i].addEventListener("click", function() {
+      for (let j = 0; j < personRows.length; j++) {
+        personRows[j].classList.remove('active');
+      }
+
+      const personId = this.getAttribute('data-id');
+
+      fetch(`/users/people//${personId}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          document.querySelector('.person-detail .person-furigana').textContent = data.furigana;
+          document.querySelector('.person-detail .person-name').textContent = data.name;
+
+          document.querySelector('.edit-button').setAttribute('href', '/users/people/' + data.id + '/edit');
+          document.querySelector('.delete-button').setAttribute('href', '/users/people/' + data.id);
+
+          const birthday = document.querySelector('.person-detail .person-birthday')
+          if(data.birthday) {
+            const formattedBirthday = data.birthday.replace(/-/g, '/');
+            birthday.textContent = formattedBirthday + '(' + getAge(new Date(data.birthday)) + '歳)';
+            birthday.closest('.person-detail-row').classList.remove("d-none");
+          } else {
+            birthday.closest('.person-detail-row').classList.add("d-none");
+          }
+
+          const phoneNumber = document.querySelector('.person-detail .person-phone-number')
+          if(data.phone_number) {
+            phoneNumber.textContent = data.phone_number;
+            phoneNumber.closest('.person-detail-row').classList.remove("d-none");
+          } else {
+            phoneNumber.closest('.person-detail-row').classList.add("d-none");
+          }
+
+          const mail = document.querySelector('.person-detail .person-mail')
+          if(data.mail) {
+            mail.textContent = data.mail;
+            mail.closest('.person-detail-row').classList.remove("d-none");
+          } else {
+            mail.closest('.person-detail-row').classList.add("d-none");
+          }
+
+          const address = document.querySelector('.person-detail .person-address')
+          if(data.address) {
+            address.textContent = data.address;
+            address.closest('.person-detail-row').classList.remove("d-none");
+          } else {
+            address.closest('.person-detail-row').classList.add("d-none");
+          }
+
+          // TODO メモも更新する
+
+          updateOrAddIdParam(data.id)
+          this.classList.add('active');
+        })
+        .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+        });
+    });
+  }
+});
 
 function getAge(birthday) {
   const today = new Date();
