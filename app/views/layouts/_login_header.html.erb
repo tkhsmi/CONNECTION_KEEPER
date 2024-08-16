@@ -6,6 +6,7 @@
     <div class="link">
       <%= link_to 'ヒト一覧', users_people_path, class: "header-item #{'active' if current_page?(users_people_path) || current_page?(authenticated_root_path)}" %>
       <%= link_to 'メモ一覧', users_memos_path, class: "header-item #{'active' if current_page?(users_memos_path)}" %>
+      <%= link_to 'グループ管理', users_groups_path, class: "header-item #{'active' if current_page?(users_groups_path)}" %>
       <%= link_to 'タグ管理', users_tags_path, class: "header-item #{'active' if current_page?(users_tags_path)}" %>
       <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: 'header-item logout-link' %>
     </div>
