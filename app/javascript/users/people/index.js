@@ -1,30 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('newPersonModal');
-  const openModalBtn = document.getElementById('openModalBtn');
-  const closeModalBtn = document.getElementById('closeModalBtn');
-
-  // モーダルを開く
-  openModalBtn.addEventListener('click', function() {
-    modal.style.display = 'block';
-  });
-
-  // モーダルを閉じる
-  closeModalBtn.addEventListener('click', function() {
-    modal.style.display = 'none';
-    document.getElementById('person_furigana').value = '';
-    document.getElementById('person_name').value = '';
-    document.getElementById('person_birthday').value = '';
-    document.getElementById('person_phone_number').value = '';
-    document.getElementById('person_mail').value = '';
-    document.getElementById('person_address').value = '';
-  });
-
-  // モーダルの外側をクリックしたときにモーダルを閉じる
-  window.addEventListener('click', function(event) {
-    if (event.target == modal) {
-      modal.style.display = 'none';
-    }
-  });
+  loadNewPersonModal()
+  loadNewMemoModal()
 
   const personRows = document.getElementsByClassName('person-row');
 
@@ -94,6 +70,69 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+function loadNewPersonModal() {
+  const newPersonModal = document.getElementById('newPersonModal');
+  const openNewPersonModalBtn = document.getElementById('openNewPersonModalBtn');
+  const closeNewPersonModalBtn = document.getElementById('closeNewPersonModalBtn');
+
+  // モーダルを開く
+  openNewPersonModalBtn.addEventListener('click', function() {
+    newPersonModal.style.display = 'block';
+  });
+
+  // モーダルを閉じる
+  closeNewPersonModalBtn.addEventListener('click', function() {
+    newPersonModal.style.display = 'none';
+    clearPersonForm();
+  });
+
+  // モーダルの外側をクリックしたときにモーダルを閉じる
+  window.addEventListener('click', function(event) {
+    if (event.target == newPersonModal) {
+      newPersonModal.style.display = 'none';
+      clearPersonForm();
+    }
+  });
+}
+
+function clearPersonForm() {
+  document.getElementById('person_furigana').value = '';
+  document.getElementById('person_name').value = '';
+  document.getElementById('person_birthday').value = '';
+  document.getElementById('person_phone_number').value = '';
+  document.getElementById('person_mail').value = '';
+  document.getElementById('person_address').value = '';
+}
+
+function loadNewMemoModal() {
+  const newMemoModal = document.getElementById('newMemoModal');
+  const openNewMemoModalBtn = document.getElementById('openNewMemoModalBtn');
+  const closeNewMemoModalBtn = document.getElementById('closeNewMemoModalBtn');
+
+  // モーダルを開く
+  openNewMemoModalBtn.addEventListener('click', function() {
+    newMemoModal.style.display = 'block';
+  });
+
+  // モーダルを閉じる
+  closeNewMemoModalBtn.addEventListener('click', function() {
+    newMemoModal.style.display = 'none';
+    clearMemoForm();
+  });
+
+  // モーダルの外側をクリックしたときにモーダルを閉じる
+  window.addEventListener('click', function(event) {
+    if (event.target == newMemoModal) {
+      newMemoModal.style.display = 'none';
+      clearMemoForm();
+    }
+  });
+}
+
+function clearMemoForm() {
+  document.getElementById('memo_content').value = '';
+}
 
 function getAge(birthday) {
   const today = new Date();

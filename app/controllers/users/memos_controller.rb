@@ -16,7 +16,11 @@ class Users::MemosController < ApplicationController
     @memo.user_id = current_user.id
 
     if @memo.save
-      redirect_to users_memos_path
+      if request.referer&.include?("users/people")
+        redirect_to users_people_path
+      else
+        redirect_to users_memos_path
+      end
     else
       render :new
     end

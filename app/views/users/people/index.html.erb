@@ -5,7 +5,8 @@
       <%= text_field_tag :search %>
       <%= submit_tag '検索する' %>
     <% end %> -->
-    <%= button_tag "ヒトを追加", id: 'openModalBtn', class: 'primary-btn add-person-btn' %>
+    <%= button_tag "ヒトを追加", id: 'openNewPersonModalBtn', class: 'primary-btn add-person-btn' %>
+    <%= button_tag "メモを追加", id: 'openNewMemoModalBtn', class: 'primary-btn add-memo-btn' %>
   </div>
 </div>
 <% if @people.present? %>
@@ -83,8 +84,8 @@
 
 <div id="newPersonModal" class="modal">
   <div class="modal-content">
-    <span class="close-btn" id="closeModalBtn">&times;</span>
-    <%= form_with model: Person.new, url: users_people_path, local: true do |f| %>
+    <span class="close-btn" id="closeNewPersonModalBtn">&times;</span>
+    <%= form_with model: Person.new, url: users_people_path, local: true, data: { turbo: false } do |f| %>
       <div class="field mt-50">
         <%= f.label :furigana, class: 'form-label' %>
         <%= f.text_field :furigana, class: 'form-text' %>
@@ -111,6 +112,21 @@
       </div>
       <div>
         <%= f.submit 'ヒトを追加', class: 'primary-btn submit-btn' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div id="newMemoModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeNewMemoModalBtn">&times;</span>
+    <%= form_with model: Memo.new, url: users_memos_path, local: true, data: { turbo: false } do |f| %>
+      <div class="field mt-50">
+        <%= f.label :content, class: 'form-label' %>
+        <%= f.text_area :content, class: 'form-text' %>
+      </div>
+      <div>
+        <%= f.submit 'メモを追加', class: 'primary-btn submit-btn' %>
       </div>
     <% end %>
   </div>

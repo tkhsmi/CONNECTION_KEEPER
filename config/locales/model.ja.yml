@@ -2,9 +2,12 @@ ja:
   activerecord:
     # モデル名
     models:
+      memo: メモ
       person: ヒト
     # モデルごとの属性
     attributes:
+      memo:
+        content: 内容
       person:
         furigana: ふりがな
         name: 名前
