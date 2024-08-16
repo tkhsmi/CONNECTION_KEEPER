@@ -8,9 +8,9 @@
     <%= button_tag "ヒトを追加", id: 'openModalBtn', class: 'primary-btn add-person-btn' %>
   </div>
 </div>
-<div class="container">
-  <div class="content main">
-    <div>
+<% if @people.present? %>
+  <div class="container">
+    <div class="content main">
       <% @people.each_with_index do |person, i| %>
         <div class="person-row <%= 'active' if active?(i, person.id) %>" data-id=<%= person.id %>>
           <%= image_tag 'person_no_img.png', class: 'person-img' %>
@@ -23,57 +23,63 @@
         </div>
       <% end %>
     </div>
-  </div>
-  <div class="content">
-    <div class="person-detail">
-      <div class="person-detail-top">
-        <%= image_tag 'person_no_img.png', class: 'person-img' %>
-        <div class="person-summary">
-          <div class="person-furigana"><%= @person.furigana %></div>
-          <div class="person-name"><%= @person.name %></div>
-          <div class="person-group">家族</div>
-          <div class="person-group">田中家</div>
-        </div>
-      </div>
-      <div class="button-area">
-        <%= link_to '編集する', edit_users_person_path(@person.id), class: 'edit-button button' %>
-        <%= link_to '削除する', users_person_path(@person.id), data: { turbo_method: :delete }, class: 'delete-button button' %>
-      </div>
-      <div class="person-detail-row <%= 'd-none' if @person.birthday.blank? %>">
-        <span class="person-detail-title">誕生日</span>
-        <span class="person-birthday"><%= l @person.birthday %>(<%= get_age(@person.birthday) %>歳)</span>
-      </div>
-      <div class="person-detail-row <%= 'd-none' if @person.phone_number.blank? %>">
-        <span class="person-detail-title">電話番号</span>
-        <span class="person-phone-number"><%= @person.phone_number %></span>
-      </div>
-      <div class="person-detail-row <%= 'd-none' if @person.mail.blank? %>">
-        <span class="person-detail-title">メールアドレス</span>
-        <span class="person-mail"><%= @person.mail %></span>
-      </div>
-      <div class="person-detail-row <%= 'd-none' if @person.address.blank? %>">
-        <span class="person-detail-title">住所</span>
-        <span class="person-address"><%= @person.address %></span>
+    <div class="content">
+      <div class="person-detail">
+        <% if @person.present? %>
+          <div class="person-detail-top">
+            <%= image_tag 'person_no_img.png', class: 'person-img' %>
+            <div class="person-summary">
+              <div class="person-furigana"><%= @person.furigana %></div>
+              <div class="person-name"><%= @person.name %></div>
+              <div class="person-group">家族</div>
+              <div class="person-group">田中家</div>
+            </div>
+          </div>
+          <div class="button-area">
+            <%= link_to '編集する', edit_users_person_path(@person.id), class: 'edit-button button' %>
+            <%= link_to '削除する', users_person_path(@person.id), data: { turbo_method: :delete }, class: 'delete-button button' %>
+          </div>
+          <div class="person-detail-row <%= 'd-none' if @person.birthday.blank? %>">
+            <span class="person-detail-title">誕生日</span>
+            <span class="person-birthday"><%= l @person.birthday %>(<%= get_age(@person.birthday) %>歳)</span>
+          </div>
+          <div class="person-detail-row <%= 'd-none' if @person.phone_number.blank? %>">
+            <span class="person-detail-title">電話番号</span>
+            <span class="person-phone-number"><%= @person.phone_number %></span>
+          </div>
+          <div class="person-detail-row <%= 'd-none' if @person.mail.blank? %>">
+            <span class="person-detail-title">メールアドレス</span>
+            <span class="person-mail"><%= @person.mail %></span>
+          </div>
+          <div class="person-detail-row <%= 'd-none' if @person.address.blank? %>">
+            <span class="person-detail-title">住所</span>
+            <span class="person-address"><%= @person.address %></span>
+          </div>
+        <% end %>
       </div>
     </div>
+    <div class="content">
+      <% @memos.each do |memo| %>
+        <div class="memo-row">
+          <div class="memo-date">
+            <%= l memo.created_at.to_date %>
+          </div>
+          <div class="memo-content">
+            <%= memo.content %>
+            エイデンアンドアネイのおくるみももらった！4000円くらいだと思う。すごくかわいい。
+          </div>
+          <div class="memo-tag">
+            結婚祝い
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div class="content">
-    <% @memos.each do |memo| %>
-      <div class="memo-row">
-        <div class="memo-date">
-          <%= l memo.created_at.to_date %>
-        </div>
-        <div class="memo-content">
-          <%= memo.content %>
-          エイデンアンドアネイのおくるみももらった！4000円くらいだと思う。すごくかわいい。
-        </div>
-        <div class="memo-tag">
-          結婚祝い
-        </div>
-      </div>
-    <% end %>
+<% else %>
+  <div class="no-people">
+    <div class="no-people-text">右上の「ヒトを追加」ボタンからヒトを追加してみましょう！</div>
   </div>
-</div>
+<% end %>
 
 <div id="newPersonModal" class="modal">
   <div class="modal-content">
