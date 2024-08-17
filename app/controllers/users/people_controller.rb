@@ -1,4 +1,5 @@
 class Users::PeopleController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_person, only: %i[show edit update]
 
   def index

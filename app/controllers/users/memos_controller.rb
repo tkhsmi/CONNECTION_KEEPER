@@ -1,4 +1,5 @@
 class Users::MemosController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_memo, only: %i[show edit update]
 
   def index

@@ -1,4 +1,5 @@
 class Users::TagsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_tag, only: %i[edit update]
 
   def index
