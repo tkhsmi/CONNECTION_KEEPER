@@ -6,7 +6,10 @@ class Users::MemosController < ApplicationController
     @memos = current_user.memo
   end
 
-  def show; end
+  def show
+    @memo = Memo.find(params[:id])
+    render json: @memo
+  end
 
   def new
     @memo = Memo.new
