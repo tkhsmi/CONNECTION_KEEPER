@@ -4,4 +4,4 @@ test:
   username: root
   password: ""
   host: 127.0.0.1
-  database: relationships_memo_v1_development_test
+  database: connection_keeper_development_test
