@@ -1,9 +1,12 @@
 class Users::MemosController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_memo, only: %i[show edit update]
+  before_action :set_memo, only: %i[edit update]
 
   def index
     @memos = current_user.memo
+    @memo = current_user.memo.find_by(id: params[:id]) || current_user.memo.first
+
+    @people = current_user.person # TODO @memoに紐づくヒトを表示する
   end
 
   def show
@@ -39,7 +42,7 @@ class Users::MemosController < ApplicationController
   private
 
   def set_memo
-    @tag = memo.find(params[:id])
+    @memo = Memo.find(params[:id])
   end
 
   def memo_params

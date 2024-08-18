@@ -1,0 +1,220 @@
+@use '../../setting';
+
+.sub-header {
+  height: 50px;
+  background-color: #f3f3f3;
+  border-bottom: 1px solid #e2e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+
+  .add-person-btn,
+  .add-memo-btn {
+    width: 110px;
+  }
+}
+
+.no-memos {
+  display: flex;
+  height: calc(100vh - 132px);
+  align-items: center;
+  justify-content: center;
+}
+
+.no-memos-text {
+  font-size: 3rem;
+  padding: 60px;
+}
+
+.container {
+  display: flex;
+}
+
+.content {
+  width: 35%;
+  height: calc(100vh - 132px);
+  min-width: 350px;
+  overflow-y: scroll;
+
+  &.main {
+    padding: 0;
+  }
+
+  &:not(:last-child) {
+    border-right: 1px solid #e2e0e0;
+    max-width: 400px;
+  }
+
+  &:last-child {
+    width: -webkit-fill-available;
+  }
+}
+
+.memo-row {
+  padding: 20px;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #e2e0e0;
+  }
+
+  &.active {
+    background-color: #e2e2e2;
+    border-right: 8px solid setting.$accent-color;;
+  }
+
+  .memo-date {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+
+  .memo-content {
+    margin-bottom: 10px;
+  }
+
+  .memo-tag {
+    border-radius: 14px;
+    background-color: #e7af46;
+    font-size: 1.4rem;
+    padding: 3px 16px;
+    color: white;
+    width: fit-content;
+  }
+}
+
+.memo-detail {
+  padding: 20px;
+
+  .button-area {
+    margin-bottom: 20px;
+
+    .button {
+      display: inline-block;
+      height: 40px;
+      text-decoration: none;
+      min-width: 50px;
+      text-align: center;
+      align-content: center;
+      font-weight: bold;
+      border-radius: 5px;
+      width: 48%;
+
+      &.edit-button {
+        border: 1px solid setting.$accent-color;;
+        color: setting.$accent-color;;
+
+        &:hover {
+          background-color: setting.$accent-color;;
+          color: white;
+        }
+      }
+
+      &.delete-button {
+        border: 1px solid #8c8c8c;
+        color: #8c8c8c;
+
+        &:hover {
+          background-color: #8c8c8c;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .memo-detail-top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .memo-img {
+      width: 100px;
+      border-radius: 50px;
+      margin-right: 10px;
+    }
+
+    .memo-summary {
+      .memo-furigana {
+        font-size: 1.2rem;
+      }
+
+      .memo-name {
+        font-weight: bold;
+        font-size: 2rem;
+      }
+
+      .memo-group {
+        border-radius: 14px;
+        background-color: setting.$accent-color;
+        display: inline-block;
+        font-size: 1.4rem;
+        padding: 3px 16px;
+        color: white;
+        width: fit-content;
+      }
+    }
+  }
+
+  .memo-detail-row {
+    justify-content: space-between;
+    display: flex;
+    padding: 15px;
+    border-bottom: 1px solid #fa9884;
+    cursor: pointer;
+    word-break: break-all;
+
+    &:hover {
+      background-color: #fa98847d;
+    }
+
+    .memo-detail-title {
+      font-weight: bold;
+      margin-right: 10px;
+      white-space: nowrap;
+    }
+  }
+}
+
+.person-row {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e2e2e2;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #e2e0e0;
+  }
+
+  .person-img {
+    border-radius: 30px;
+    width: 60px;
+    margin-right: 20px;
+  }
+
+  .person-summary {
+    width: 100%;
+
+    .person-furigana {
+      font-size: 1.2rem;
+    }
+
+    .person-name {
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    .person-group {
+      border-radius: 14px;
+      background-color: setting.$accent-color;
+      display: inline-block;
+      font-size: 1.4rem;
+      padding: 3px 16px;
+      color: white;
+      width: fit-content;
+    }
+  }
+}
