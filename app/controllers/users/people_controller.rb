@@ -30,7 +30,15 @@ class Users::PeopleController < ApplicationController
 
   def update; end
 
-  def destroy; end
+  def destroy
+    person = Person.find(params[:id])
+
+    if person.user_id == current_user.id
+      person.destroy
+    end
+
+    redirect_to users_people_path
+  end
 
   private
 
