@@ -4,7 +4,7 @@ class Users::PeopleController < ApplicationController
 
   def index
     @people = current_user.person.order(:furigana)
-    @person = current_user.person.find_by(id: params[:id]) || current_user.person.first
+    @person = current_user.person.find_by(id: params[:id]) || current_user.person.order(:furigana).first
 
     @memos = current_user.memo # TODO: @personに紐づくメモを表示する
   end
