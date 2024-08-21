@@ -33,7 +33,7 @@ class Users::PeopleController < ApplicationController
   def destroy
     person = Person.find(params[:id])
     person.destroy if person.user_id == current_user.id
-    redirect_to users_people_path
+    redirect_to users_people_path, status: :see_other
   end
 
   private
