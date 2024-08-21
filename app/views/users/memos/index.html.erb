@@ -43,7 +43,7 @@
           </div>
           <div class="button-area">
             <%= link_to '編集する', edit_users_memo_path(@memo.id), class: 'edit-button button' %>
-            <%= link_to '削除する', users_memo_path(@memo.id), data: { turbo_method: :delete }, class: 'delete-button button' %>
+            <%= link_to '削除する', users_memo_path(@memo.id), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'delete-button button' %>
           </div>
         <% end %>
       </div>
