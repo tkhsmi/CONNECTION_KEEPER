@@ -1,5 +1,7 @@
 module Users::PeopleHelper
   def get_age(birthday)
+    return 0 if birthday.nil?
+
     today = Time.zone.today
     this_years_birthday = Date.new(today.year, birthday.month, birthday.day)
     age = today.year - birthday.year

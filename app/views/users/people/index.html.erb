@@ -42,7 +42,7 @@
           </div>
           <div class="person-detail-row <%= 'd-none' if @person.birthday.blank? %>">
             <span class="person-detail-title">誕生日</span>
-            <span class="person-birthday"><%= l @person.birthday %>(<%= get_age(@person.birthday) %>歳)</span>
+            <span class="person-birthday"><%= l (@person.birthday || Time.zone.today)%>(<%= get_age(@person.birthday) %>歳)</span>
           </div>
           <div class="person-detail-row <%= 'd-none' if @person.phone_number.blank? %>">
             <span class="person-detail-title">電話番号</span>
