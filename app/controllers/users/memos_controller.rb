@@ -37,7 +37,11 @@ class Users::MemosController < ApplicationController
 
   def update; end
 
-  def destroy; end
+  def destroy
+    memo = Memo.find(params[:id])
+    memo.destroy if memo.user_id == current_user.id
+    redirect_to users_memos_path
+  end
 
   private
 
