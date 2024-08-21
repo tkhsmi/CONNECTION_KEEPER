@@ -40,7 +40,7 @@ class Users::MemosController < ApplicationController
   def destroy
     memo = Memo.find(params[:id])
     memo.destroy if memo.user_id == current_user.id
-    redirect_to users_memos_path
+    redirect_to users_memos_path, status: :see_other
   end
 
   private
